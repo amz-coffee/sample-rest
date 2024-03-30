@@ -7,7 +7,7 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-func Hello() {
+func printStr() {
 
 	fmt.Println("hello")
 }
@@ -18,4 +18,12 @@ func Register(api *echo.Echo) {
 		return c.String(http.StatusOK, "Hello, World!")
 	})
 
+	api.GET("/users/:id", getUser)
+}
+
+func getUser(c echo.Context) error {
+
+	printStr()
+	id := c.Param("id")
+	return c.String(http.StatusOK, id)
 }
